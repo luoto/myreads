@@ -2,11 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as BooksAPI from '../BooksAPI';
 import Book from './Book';
+import _ from 'lodash';;
 
 class Search extends React.Component {
   state = {
     books: [],
     booksInShelf: {}
+  }
+
+  componentWillMount() {
+    this.updateBooks = _.debounce(this.updateBooks, 500);
   }
 
   componentDidMount() {

@@ -40,12 +40,12 @@ class Search extends React.Component {
 
   updateBooks = (query) => {
     BooksAPI.search(query, 5).then((books) => {
-      const categorizedBooks = this.catorgorizeBooks(books);
+      const categorizedBooks = this.categorizeBooks(books);
       this.setState(prevState => ({books: categorizedBooks, booksInShelf: prevState.booksInShelf}));
     });
   }
 
-  catorgorizeBooks = (books) => {
+  categorizeBooks = (books) => {
     if (books.error === "empty query") return [];
     return books.map((book) => {
       this.state.booksInShelf[book.id] ? book.shelf = this.state.booksInShelf : book.shelf = 'none';

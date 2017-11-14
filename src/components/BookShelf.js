@@ -4,6 +4,10 @@ import Header from './Header';
 import Shelf from './Shelf';
 
 class BookShelf extends React.Component {
+  state = {
+    books: []
+  }
+
   componentDidMount() {
     BooksAPI.getAll().then((books) => this.setState({ books: books }));
   }

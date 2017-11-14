@@ -1,6 +1,26 @@
 import React from 'react'
 
 class Search extends React.Component {
+  state = {
+    books: [],
+    booksInShelf: {}
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({
+        books: [],
+        booksInShelf: this.booksToID(books)
+      })
+    });
+  }
+
+  booksToID = (books) => {
+    return books.reduce((obj, book) => {
+      obj[book.id] = book.shelf;
+      return obj;
+    }, {});
+  }
   render() {
     return (
       <div className="search-books">

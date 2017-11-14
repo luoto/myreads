@@ -2,6 +2,7 @@ import React from 'react';
 import * as BooksAPI from '../BooksAPI';
 import Header from './Header';
 import Shelf from './Shelf';
+import SearchButton from './SearchButton';
 
 class BookShelf extends React.Component {
   state = {
@@ -38,6 +39,7 @@ class BookShelf extends React.Component {
           </div>
         </div>
       </div>
+      <SearchButton />
     </div>
     )
   }

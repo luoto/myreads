@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import * as BooksAPI from '../BooksAPI';
+import Book from './Book';
 
 class Search extends React.Component {
   state = {
@@ -21,6 +24,41 @@ class Search extends React.Component {
       return obj;
     }, {});
   }
+
+  search = (event) => {
+    // cannot put this in the debounce function due to synthetic event pooling done by react
+    const query = event.target.value;
+    if (query === '') return;
+
+    this.updateBooks(query);
+  }
+
+  updateBooks = (query) => {
+    BooksAPI.search(query, 5).then((books) => {
+      const categorizedBooks = this.catorgorizeBooks(books);
+      this.setState(prevState => ({books: categorizedBooks, booksInShelf: prevState.booksInShelf}));
+    });
+  }
+
+  catorgorizeBooks = (books) => {
+    if (books.error === "empty query") return [];
+    return books.map((book) => {
+      this.state.booksInShelf[book.id] ? book.shelf = this.state.booksInShelf : book.shelf = 'none';
+      return book;
+    });
+  }
+
+  moveShelf = (id, newShelf, currentShelf) => {
+    BooksAPI.update({id}, newShelf).then((books) => {
+      this.setState(prevState => {
+        return prevState.books.map((book) => {
+          if (book.id === id) book.shelf = newShelf;
+          return book;
+        })
+      })
+    })
+  }
+
   render() {
     return (
       <div className="search-books">

@@ -48,7 +48,7 @@ class Search extends React.Component {
   categorizeBooks = (books) => {
     if (books.error === "empty query") return [];
     return books.map((book) => {
-      this.state.booksInShelf[book.id] ? book.shelf = this.state.booksInShelf : book.shelf = 'none';
+      this.state.booksInShelf[book.id] ? book.shelf = this.state.booksInShelf[book.id] : book.shelf = 'none';
       return book;
     });
   }

@@ -12,7 +12,7 @@ MyReads provides a user with a bookshelf, to manage their library. Users are abl
 Powered by Udacity, see [here](https://github.com/udacity/reactnd-project-myreads-starter#backend-server).
 
 ### Note
-Due to the nature of the backend, search terms are limited to [SEARCH_TERMS.md](https://github.com/luoto/myreadsblob/master/SEARCH_TERMS.md).
+Due to the nature of the backend, search terms are limited to [SEARCH_TERMS.md](https://github.com/luoto/myreads/blob/master/SEARCH_TERMS.md).
 
 ## Credits
  This project was bootstrapped with [Udacity's MyReads Starter Template](https://github.com/udacity/reactnd-project-myreads-starter), which provided a static example of CSS and HTML markup without any React code.
